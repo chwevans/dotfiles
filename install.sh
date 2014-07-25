@@ -1,3 +1,3 @@
 cp .vimrc ~/
-cp .vim ~/
+cp -r .vim ~/
 cp .gitconfig ~/
