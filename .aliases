@@ -1,0 +1,7 @@
+alias ls='ls -G'
+alias search='echo '.' | xargs grep -n -R -i'
+
+function ref {
+  F=$(find /usr/local/Cellar/erlang/17.0/lib/erlang/lib/ -name ${1})
+  less ${F}
+}
