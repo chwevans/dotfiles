@@ -1,14 +1,21 @@
 alias ls='ls -G'
+alias p3='source ~/Documents/penv/venv3/bin/activate'
 alias search='echo '.' | xargs grep -n -R -i'
+alias rmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
+alias setmac="sudo ifconfig en0 ether"
 
-function ref {
+function getdoc() {
+	OUTPUT_FILE=$(echo ${1} | sed 's/\//%2f/g')
+	curl ${1} > ${OUTPUT_FILE}
+}
+
+function ipinfo() {
+	curl "ipinfo.io/$1"
+	echo
+}
+
+function eref {
   F=$(find /usr/local/Cellar/erlang/17.0/lib/erlang/lib/ -name ${1})
   less ${F}
 }
 
-function elysia {
-  TOKEN=$(cat /Users/chase/.keys/digital_ocean_ip)
-  IP=$(curl -sX GET "https://api.digitalocean.com/v2/droplets/" -H "Authorization: Bearer $TOKEN" | \
-	 python -c 'import json,sys;obj=json.load(sys.stdin);print([droplet["networks"]["v4"][0]["ip_address"] for droplet in obj["droplets"] if droplet["name"] == "elysia"][0])')
-  ssh ${IP}
-}
