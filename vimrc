@@ -79,15 +79,6 @@ au FileType css set expandtab tabstop=4 shiftwidth=4
 " CFG files
 au FileType cfg set expandtab tabstop=4 shiftwidth=4
 
-" ZSH files
-au FileType zsh set expandtab tabstop=4 shiftwidth=4
-
-" Sending Mail
-au FileType mail set fo=tcoqwan nu! spell spelllang=en_us textwidth=78 wrap 
-
-" For svn/hg commit message -- courtesy of jimmyngo
-au FileType svn set fo=tcoqwan spell spelllang=en_us textwidth=78 wrap
-au FileType mercurial set fo=tcoqwan spell spelllang=en_us textwidth=78 wrap
-
+" JSON files
 au! BufRead,BufNewFile *.json set filetype=json autoindent formatoptions=tcq2l textwidth=78 shiftwidth=2 softtabstop=2 tabstop=8 expandtab foldmethod=syntax
 
