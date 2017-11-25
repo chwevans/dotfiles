@@ -39,9 +39,6 @@ command W w !sudo tee % > /dev/null
 
 nmap <U> :redo
 
-" Ctags
-nmap <C-r> :TagbarToggle<CR>
-
 " Window management stuff
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
@@ -54,8 +51,6 @@ imap <C-j> <esc><C-W>j<C-W>_a
 imap <C-k> <esc><C-W>k<C-W>_a
 imap <C-l> <esc>gta
 imap <C-h> <esc>gTa
-
-map <f11> Go<cr><!--<cr># vim:ft=twiki<cr>--><esc>
 
 " Highlight search toggling -- courtesy of jimmyngo
 map <F5> :set hlsearch!<CR>
@@ -94,12 +89,5 @@ au FileType mail set fo=tcoqwan nu! spell spelllang=en_us textwidth=78 wrap
 au FileType svn set fo=tcoqwan spell spelllang=en_us textwidth=78 wrap
 au FileType mercurial set fo=tcoqwan spell spelllang=en_us textwidth=78 wrap
 
-" For TWiki, TWiki Folding, and HTML Syntax -- courtesy of jimmyngo
-au FileType twiki set spell spelllang=en_us tabstop=3 shiftwidth=3 expandtab
-let g:Twiki_FoldAtHeadings = 1
-let g:Twiki_SouceHTMLSyntax = 1
-
 au! BufRead,BufNewFile *.json set filetype=json autoindent formatoptions=tcq2l textwidth=78 shiftwidth=2 softtabstop=2 tabstop=8 expandtab foldmethod=syntax
 
-" Insert ipsum lorem statements for filling html
-inoreabbrev lorem Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
