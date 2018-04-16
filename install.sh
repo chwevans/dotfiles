@@ -1,15 +1,25 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Install vim configuration
-ln -s $DIR/vimrc ~/.vimrc
-ln -s $DIR/vim ~/.vim
+ln -sh $DIR/vimrc ~/.vimrc
+ln -sh $DIR/vim ~/.vim
 
 # Install gitconfig
-ln -s $DIR/gitconfig ~/.gitconfig
+ln -sh $DIR/gitconfig ~/.gitconfig
 
 # Install aliases
-ln -s $DIR/aliases ~/.aliases
-echo "source ~/.aliases" >> ~/.bash_profile
+ln -sh $DIR/aliases ~/.aliases
+if grep -Fxq 'source ~/.aliases' ~/.bash_profile
+then
+        echo "Skipping aliases installation"
+else
+        echo "source ~/.aliases" >> ~/.bash_profile
+fi
 
-# Install 
-echo "export GOPATH=$HOME/Documents/go" >> ~/.bash_profile
+# Install
+if grep -Fxq "export GOPATH=$HOME/Documents/go" ~/.bash_profile
+then
+        echo "Skipping GOPATH installation"
+else
+        echo "export GOPATH=$HOME/Documents/go" >> ~/.bash_profile
+fi
