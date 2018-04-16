@@ -1,71 +1,85 @@
-set nocompatible
-set ignorecase
-set smartcase
-set scrolloff=3
-set wildmode=list:longest
-set hidden
-nnoremap ' `
-nnoremap ` '
-let maplead = "<SPACE>"
-set history=100
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set ruler
+"======================================================================
+" Settings
+"======================================================================
 syntax on
-filetype on
-filetype plugin on
-filetype indent on
-set backspace=indent,eol,start
-set hlsearch
-set incsearch
-set visualbell
-set nu!
-
-" Go stuff
-filetype off
-filetype plugin indent off
-set runtimepath+=~/.vim/.govim/misc/vim
 filetype plugin indent on
-syntax on
-filetype on
-au FileType go compiler go
 
-map <C-f> :Fmt<cr>
-map <C-m> :make<cr>
+set expandtab
+set autoindent
+set smarttab
+set smartindent
+set hlsearch
 
+" Allow backspaces in insert mode
+set backspace=indent,eol,start
+
+" I have git for this.
+set nobackup
+set noswapfile
+
+set wildignore+=*.swp,*.back,*.pyc,*.class,*.beam
+
+" don't beep
+set visualbell
+set noerrorbells
+
+" don't flash
+set t_vb=
+
+" first complete to max, then show a list
+set wildmode=longest,list,full
+
+"======================================================================
 " Commands
+"======================================================================
+command! Clean execute "%s/\\s\\+$//g"
+
 " sudo writing a file within vim -- courtesy of jimmyngo
 command W w !sudo tee % > /dev/null
 
+" ===================================================================
+" Key Mappings
+" ===================================================================
+
+" Toggle highlighting
+noremap <F5> :set hlsearch!<CR>
+
+" jj pulls you out of insert mode
+inoremap jj <ESC>
+
+" Ctrl-j/k movesd panes
+inoremap <c-j> <ESC><c-w>j<c-w>_i
+noremap <c-j> <c-w>j<c-w>_
+
+inoremap <c-k> <ESC><c-w>k<c-w>_i
+noremap <c-k> <c-w>k<c-w>_
+
+" Ctrl-o equals panes
+inoremap <c-o> <ESC><c-w>=i
+noremap <c-o> <c-w>=
+
+" Big u redoes
 nmap <U> :redo
 
-" Window management stuff
-map <C-j> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
-" The tabs can also be controlled with :tabn and :tabp
-map <C-l> gt
-map <C-h> gT
+"Remove all trailing whitespace by pressing Ctrl-w
+nnoremap <c-q> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
-" Insert mode mappings
-imap <C-j> <esc><C-W>j<C-W>_a
-imap <C-k> <esc><C-W>k<C-W>_a
-imap <C-l> <esc>gta
-imap <C-h> <esc>gTa
+"======================================================================
+" Appearance
+"======================================================================
 
-" Highlight search toggling -- courtesy of jimmyngo
-map <F5> :set hlsearch!<CR>
+" Visual indicator of more than 80 columns changed to red
+highlight ColorColumn ctermbg=red
+highlight ColorColumn guibg=red
 
-" Golang coding conventions
-au FileType go set tabstop=2 shiftwidth=2
+" Visual indicator of extraneous whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
-" Ruby coding conventions
-au FileType ruby set tabstop=2 expandtab shiftwidth=2
 
-" Python coding conventions
-au FileType python set tabstop=4 expandtab shiftwidth=4
-
-" Erlang coding conventions
-au FileType erlang set tabstop=2 expandtab shiftwidth=2
+"======================================================================
+" TODO Filetype settings to move
+"======================================================================
 
 " HTML Coding
 au FileType html set expandtab matchpairs+=<:> tabstop=4 shiftwidth=4

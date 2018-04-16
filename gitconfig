@@ -24,10 +24,10 @@
   changed = red
   untracked = yellow
 [color]
-  ui = true
+	ui = true
 [branch] 
   autosetuprebase = always
 [core]
   editor = /usr/bin/vim
 [push]
-  default = current
+	default = simple
