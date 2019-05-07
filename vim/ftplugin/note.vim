@@ -4,7 +4,10 @@ setlocal softtabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 setlocal autoindent
+setlocal tw=120
+setlocal wrap linebreak nolist
 
+setlocal formatoptions=tq
 setlocal foldmethod=indent
 "setlocal foldmethod=expr
 "setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))

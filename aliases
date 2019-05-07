@@ -3,6 +3,11 @@ alias p3='source ~/Documents/penv/venv3/bin/activate'
 alias search='echo '.' | xargs grep -n -R -i'
 alias rmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 alias setmac="sudo ifconfig en0 ether"
+alias ut='date +%s'
+
+function pb() {
+        cat $1 | pbcopy
+}
 
 function gitm() {
         git stash
@@ -28,6 +33,15 @@ function pw() {
 function eref {
   F=$(find /usr/local/Cellar/erlang/17.0/lib/erlang/lib/ -name ${1})
   less ${F}
+}
+
+function docker_clean_everything() {
+        # Stop All containers
+        docker stop $(docker ps -a -q)
+        # Delete all containers
+        docker rm $(docker ps -a -q)
+        # Delete all images
+        docker rmi $(docker images -q)
 }
 
 function ta() {
