@@ -4,6 +4,7 @@ alias search='echo '.' | xargs grep -n -R -i'
 alias rmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 alias setmac="sudo ifconfig en0 ether"
 alias ut='date +%s'
+alias insecure_chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security'
 
 function pb() {
         cat $1 | pbcopy
