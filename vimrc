@@ -43,6 +43,7 @@ command W w !sudo tee % > /dev/null
 
 " Toggle highlighting
 noremap <F5> :set hlsearch!<CR>
+noremap <c-h> :set hlsearch!<CR>
 
 " jj pulls you out of insert mode
 inoremap jj <ESC>
@@ -59,7 +60,7 @@ inoremap <c-o> <ESC><c-w>=i
 noremap <c-o> <c-w>=
 
 " Big u redoes
-nmap <U> :redo
+nmap <U> :redo<CR>
 
 "Remove all trailing whitespace by pressing Ctrl-w
 nnoremap <c-q> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>

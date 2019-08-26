@@ -28,7 +28,7 @@ function ipinfo() {
 }
 
 function pw() {
-        openssl rand -base64 ${1:-32}
+        openssl rand -base64 ${1:-48}
 }
 
 function eref {
@@ -57,3 +57,5 @@ alias ts='cat ~/notes/tasks.note'
 
 
 alias dbuild='docker build -t `basename $PWD` .'
+
+alias clean_branches='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
