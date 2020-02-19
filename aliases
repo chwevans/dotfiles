@@ -59,3 +59,24 @@ alias ts='cat ~/notes/tasks.note'
 alias dbuild='docker build -t `basename $PWD` .'
 
 alias clean_branches='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
+
+# Quickly navigate to repositories
+function r() {
+        orgs=$(find ~/src -maxdepth 1 -type d | cut -d '/' -f 5 | sort)
+        for org in $orgs; do
+                cd ~/src/${org}/${1} 2>/dev/null
+                if [ $? -eq 0 ]; then
+                        return 0
+                fi
+        done
+}
+
+_r() {
+        local cur
+        repos=$(find ~/src -maxdepth 2 -type d | cut -d '/' -f 6 | sort)
+        COMPREPLY=()
+        cur=${COMP_WORDS[COMP_CWORD]}
+        COMPREPLY=( $(compgen -W "$repos" -- "$cur") )
+        return 0
+}
+complete -F _r r
