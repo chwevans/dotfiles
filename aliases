@@ -80,3 +80,10 @@ _r() {
         return 0
 }
 complete -F _r r
+
+function udp() {
+        addr=$(echo $1 | cut -d ':' -f 1)
+        addr=${addr:-localhost}
+        port=$(echo $1 | cut -d ':' -f 2)
+        echo -n $2 > /dev/udp/${addr}/${port}
+}
