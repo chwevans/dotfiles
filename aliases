@@ -87,3 +87,11 @@ function udp() {
         port=$(echo $1 | cut -d ':' -f 2)
         echo -n $2 > /dev/udp/${addr}/${port}
 }
+
+function resync_fork() {
+        git stash
+        git checkout master
+        git fetch upstream
+        git merge upstream/master
+        git push
+}
