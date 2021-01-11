@@ -50,7 +50,7 @@ function ta() {
         NEW_NUMBER=$(echo "${LAST_NUMBER:-0} + 1" | bc)
 	echo "${NEW_NUMBER}) $@" >> ~/notes/tasks.note
 }
-function tr() {
+function tremove() {
         sed -i '' "/^${1})/d" ~/notes/tasks.note
 }
 alias ts='cat ~/notes/tasks.note'

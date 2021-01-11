@@ -65,6 +65,9 @@ nmap <U> :redo<CR>
 "Remove all trailing whitespace by pressing Ctrl-w
 nnoremap <c-q> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
+inoremap <c-e> <ESC>:q<CR>
+nnoremap <c-e> :q<CR>
+
 "======================================================================
 " Appearance
 "======================================================================
