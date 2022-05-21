@@ -72,14 +72,12 @@ function r() {
 }
 
 _r() {
-        local cur
-        repos=$(find ~/src -maxdepth 2 -type d | cut -d '/' -f 6 | sort)
-        COMPREPLY=()
-        cur=${COMP_WORDS[COMP_CWORD]}
-        COMPREPLY=( $(compgen -W "$repos" -- "$cur") )
+        local context
+        repos=$(find ~/src -maxdepth 2 -type d | cut -d '/' -f 6 | sort | uniq | tail -n +2 | tr '\n' ' ')
+        _arguments "1:repo:($repos)"
         return 0
 }
-complete -F _r r
+compdef _r r
 
 function udp() {
         addr=$(echo $1 | cut -d ':' -f 1)
