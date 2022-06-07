@@ -1,25 +1,23 @@
 alias ls='ls -G'
-alias p3='source ~/Documents/penv/venv3/bin/activate'
-alias search='echo '.' | xargs grep -n -R -i'
 alias rmac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g; s/.$//'"
 alias setmac="sudo ifconfig en0 ether"
 alias ut='date +%s'
 alias insecure_chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security'
 
+function note() {
+        # TODO: Add a template
+        vim "$HOME/notes/$1.note"
+}
+_note() {
+        local context
+        notes=$(find ~/notes | tail -n +2 | xargs basename | cut -d '.' -f 1)
+        _arguments "1:notes:($notes)"
+        return 0
+}
+compdef _note note
+
 function pb() {
         cat $1 | pbcopy
-}
-
-function gitm() {
-        git stash
-        git checkout master
-        git pull
-        git stash apply
-}
-
-function getdoc() {
-	OUTPUT_FILE=$(echo ${1} | sed 's/\//%2f/g')
-	curl ${1} > ${OUTPUT_FILE}
 }
 
 function ipinfo() {
@@ -29,11 +27,6 @@ function ipinfo() {
 
 function pw() {
         openssl rand -base64 ${1:-48}
-}
-
-function eref {
-  F=$(find /usr/local/Cellar/erlang/17.0/lib/erlang/lib/ -name ${1})
-  less ${F}
 }
 
 function docker_clean_everything() {
@@ -55,16 +48,16 @@ function tremove() {
 }
 alias ts='cat ~/notes/tasks.note'
 
-
 alias dbuild='docker build -t `basename $PWD` .'
 
 alias clean_branches='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 
 # Quickly navigate to repositories
 function r() {
-        orgs=$(find ~/src -maxdepth 1 -type d | cut -d '/' -f 5 | sort)
+        orgs=$(find ~/src -maxdepth 1 -type d | tail -n +2 | xargs basename | sort)
+        # TODO: ZSH for loops are different and don't break on spaces/newlines
         for org in $orgs; do
-                cd ~/src/${org}/${1} 2>/dev/null
+                cd $HOME/src/${org}/${1} 2>/dev/null
                 if [ $? -eq 0 ]; then
                         return 0
                 fi
@@ -93,3 +86,4 @@ function resync_fork() {
         git merge upstream/master
         git push
 }
+
