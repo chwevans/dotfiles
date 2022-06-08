@@ -43,7 +43,8 @@ command W w !sudo tee % > /dev/null
 
 " Toggle highlighting
 noremap <F5> :set hlsearch!<CR>
-noremap <c-h> :set hlsearch!<CR>
+" Clear search
+noremap <c-h> :let @/=""<CR>
 
 " jj pulls you out of insert mode
 inoremap jj <ESC>
